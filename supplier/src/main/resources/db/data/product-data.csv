@@ -1,0 +1,16 @@
+name,description,price,category_id
+Laptop,Powerful laptop for all your needs,1200,1
+Smartphone,The latest model with amazing features,800,1
+T-shirt,Comfortable and stylish t-shirt,20,2
+Jeans,Classic denim jeans,50,2
+Kitchen Blender,Blend your ingredients in seconds,80,3
+Coffee Maker,Start your day with a perfect cup of coffee,60,3
+Java Programming Book,Master Java programming language,40,4
+Cookbook,Delicious recipes for any occasion,30,4
+LEGO Set,Imaginative LEGO set for creative play,50,5
+Barbie Doll,Classic Barbie doll for endless fun,25,5
+Wireless Headphones,Enjoy music hassle-free with wireless headphones,70,1
+Running Shoes,Comfortable running shoes for your workout,65,2
+Desk Lamp,Adjustable desk lamp for study or work,35,3
+Portable Speaker,Take the party anywhere with portable speaker,45,1
+Yoga Mat,Stay fit and flexible with a quality yoga mat,20,2

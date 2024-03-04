@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+        <changeSet id="v1-1" author="Artyom Sushchenko">
+            <loadData tableName="category" file="db/data/category-data.csv" />
+            <loadData tableName="product" file="db/data/product-data.csv" />
+            <loadData tableName="review" file="db/data/review-data.csv" />
+        </changeSet>
+<!--    <changeSet id="v1-1" author="Artyom Sushchenko">-->
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <tableIsEmpty tableName="category"/>-->
+<!--            <tableIsEmpty tableName="product" />-->
+<!--            <tableIsEmpty tableName="review" />-->
+<!--        </preConditions>-->
+<!--        <insert tableName="category">-->
+<!--            <column name="name" value="Electronics" />-->
+<!--        </insert>-->
+<!--        <insert tableName="category">-->
+<!--            <column name="name" value="Clothing" />-->
+<!--        </insert>-->
+<!--        <insert tableName="category">-->
+<!--            <column name="name" value="Books" />-->
+<!--        </insert>-->
+<!--        <insert tableName="category">-->
+<!--            <column name="name" value="Furniture" />-->
+<!--        </insert>-->
+<!--        <insert tableName="category">-->
+<!--            <column name="name" value="Toys" />-->
+<!--        </insert>-->
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Laptop" />-->
+<!--            <column name="description" value="Powerful laptop for all your needs" />-->
+<!--            <column name="price" value="1200" />-->
+<!--            <column name="category_id" value="1" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Smartphone" />-->
+<!--            <column name="description" value="The latest model with amazing features" />-->
+<!--            <column name="price" value="800" />-->
+<!--            <column name="category_id" value="1" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="T-shirt" />-->
+<!--            <column name="description" value="Comfortable and stylish t-shirt" />-->
+<!--            <column name="price" value="20" />-->
+<!--            <column name="category_id" value="2" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Headphones" />-->
+<!--            <column name="description" value="High-quality headphones for immersive sound experience" />-->
+<!--            <column name="price" value="100" />-->
+<!--            <column name="category_id" value="1" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Jeans" />-->
+<!--            <column name="description" value="Classic denim jeans for everyday wear" />-->
+<!--            <column name="price" value="50" />-->
+<!--            <column name="category_id" value="2" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Watch" />-->
+<!--            <column name="description" value="Elegant and timeless wristwatch" />-->
+<!--            <column name="price" value="150" />-->
+<!--            <column name="category_id" value="3" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="product">-->
+<!--            <column name="name" value="Sneakers" />-->
+<!--            <column name="description" value="Stylish and comfortable sneakers for any occasion" />-->
+<!--            <column name="price" value="80" />-->
+<!--            <column name="category_id" value="2" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="review">-->
+<!--            <column name="rate" value="4.5" />-->
+<!--            <column name="comment" value="Great laptop, fast delivery!" />-->
+<!--            <column name="product_id" value="1" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="review">-->
+<!--            <column name="rate" value="5.0" />-->
+<!--            <column name="comment" value="Best smartphone I've ever used!" />-->
+<!--            <column name="product_id" value="2" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="review">-->
+<!--            <column name="rate" value="3.0" />-->
+<!--            <column name="comment" value="The t-shirt material could be softer." />-->
+<!--            <column name="product_id" value="3" />-->
+<!--        </insert>-->
+
+<!--        <insert tableName="review">-->
+<!--            <column name="rate" value="4.5" />-->
+<!--            <column name="comment" value="Perfect fit and comfortable jeans." />-->
+<!--            <column name="product_id" value="4" />-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+</databaseChangeLog>

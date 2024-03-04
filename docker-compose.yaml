@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  consumer-backend:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    restart: on-failure
+    container_name: consumer-backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - supplier-backend
+    environment:
+      - SERVER_PORT= 8081
+      - SUPPLIER_URL=http://supplier-backend:8080/api/v1
+    networks:
+      - local-network
+      
+  supplier-backend:
+    build:
+      context: ./supplier
+      dockerfile: Dockerfile
+    restart: on-failure
+    container_name: supplier-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SERVER_PORT= 8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/products_db
+    networks:
+      - local-network
+      
+  postgres:
+    image: postgres:16-alpine
+    container_name: t1_task1_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: products_db
+    volumes:
+      - db_storage:/var/lib/postgresql/data
+    networks:
+      - local-network
+volumes:
+    db_storage:
+networks:
+  local-network:
+    driver: bridge

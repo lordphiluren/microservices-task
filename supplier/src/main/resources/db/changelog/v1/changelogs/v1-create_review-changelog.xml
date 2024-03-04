@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="v1-1" author="Artyom Sushchenko">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName='review'/>
+            </not>
+        </preConditions>
+        <createTable tableName='review'>
+            <column name="id" type="bigint" generationType="BY DEFAULT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rate" type="double" defaultValue="0"/>
+            <column name="comment" type="varchar(512)" />
+            <column name="product_id" type="bigint" />
+        </createTable>
+        <addForeignKeyConstraint baseTableName="review" baseColumnNames="product_id"
+                                 constraintName="fk_review_product"
+                                 referencedTableName="product"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>
