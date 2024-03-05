@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sushchenko.consumer.dto.ReviewRequest;
 import ru.sushchenko.consumer.service.ReviewService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/reviews")
 @RequiredArgsConstructor

@@ -14,6 +14,7 @@ import ru.sushchenko.consumer.utils.validation.UpdateValidation;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
