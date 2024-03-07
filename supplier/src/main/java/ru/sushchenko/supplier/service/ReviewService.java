@@ -1,12 +1,14 @@
 package ru.sushchenko.supplier.service;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.sushchenko.supplier.dto.ReviewRequest;
+import ru.sushchenko.supplier.entity.Product;
 import ru.sushchenko.supplier.entity.Review;
 import ru.sushchenko.supplier.repo.ReviewRepo;
 import ru.sushchenko.supplier.util.exception.NotFoundException;
+import ru.sushchenko.supplier.util.mapper.ReviewMapper;
 
 import java.util.List;
 
@@ -14,8 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepo reviewRepo;
+    private final ProductService productService;
+    private final ReviewMapper reviewMapper;
     @Transactional
-    public Review add(Review review) {
+    public Review add(ReviewRequest reviewDto) {
+        Product product = productService.getById(reviewDto.getProductId());
+        Review review = reviewMapper.toEntity(reviewDto);
+        review.setProduct(product);
         return reviewRepo.save(review);
     }
     @Transactional

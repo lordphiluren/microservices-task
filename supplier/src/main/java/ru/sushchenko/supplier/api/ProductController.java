@@ -28,18 +28,12 @@ import java.util.stream.Collectors;
 public class ProductController {
     private final ProductService productService;
     private final ProductMapper productMapper;
-    private final CategoryService categoryService;
-
     @Operation(
             summary = "Adds product"
     )
     @PostMapping
     public ResponseEntity<?> addProduct(@Valid @RequestBody ProductRequest productDto) {
-        Category category = categoryService.getById(productDto.getCategoryId());
-        Product product = productMapper.toEntity(productDto);
-        product.setCategory(category);
-        Product savedProduct = productService.add(product);
-        return ResponseEntity.ok(productMapper.toDto(savedProduct));
+        return ResponseEntity.ok(productMapper.toDto(productService.add(productDto)));
     }
     @Operation(
             summary = "Get list of products",
@@ -77,11 +71,6 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateById(@PathVariable Long id,
                                         @Validated({UpdateValidation.class}) @RequestBody ProductRequest productDto) {
-        Product product = productService.getById(id);
-        productMapper.mergeDtoIntoEntity(productDto, product);
-        Category category = categoryService.getById(productDto.getCategoryId());
-        product.setCategory(category);
-        return ResponseEntity.ok(productMapper.toDto(productService.update(product)));
+        return ResponseEntity.ok(productMapper.toDto(productService.update(id, productDto)));
     }
-
 }
