@@ -6,10 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.sushchenko.supplier.dto.ProductRequest;
+import ru.sushchenko.supplier.entity.Category;
 import ru.sushchenko.supplier.entity.Product;
 import ru.sushchenko.supplier.repo.ProductRepo;
 import ru.sushchenko.supplier.repo.ProductSpecification;
 import ru.sushchenko.supplier.util.exception.NotFoundException;
+import ru.sushchenko.supplier.util.mapper.ProductMapper;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -19,8 +22,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepo productRepo;
+    private final ProductMapper productMapper;
+    private final CategoryService categoryService;
     @Transactional
-    public Product add(Product product) {
+    public Product add(ProductRequest productDto) {
+        Category category = categoryService.getById(productDto.getCategoryId());
+        Product product = productMapper.toEntity(productDto);
+        product.setCategory(category);
         return productRepo.save(product);
     }
     @Transactional
@@ -42,7 +50,11 @@ public class ProductService {
         productRepo.deleteById(id);
     }
     @Transactional
-    public Product update(Product product) {
+    public Product update(Long id, ProductRequest productDto) {
+        Product product = getById(id);
+        productMapper.mergeDtoIntoEntity(productDto, product);
+        Category category = categoryService.getById(productDto.getCategoryId());
+        product.setCategory(category);
         return productRepo.save(product);
     }
 }

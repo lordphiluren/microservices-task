@@ -20,16 +20,12 @@ import ru.sushchenko.supplier.util.mapper.ReviewMapper;
 public class ReviewController {
     private final ReviewMapper reviewMapper;
     private final ReviewService reviewService;
-    private final ProductService productService;
     @Operation(
             summary = "Adds review to product"
     )
     @PostMapping
     public ResponseEntity<?> addReview(@Valid @RequestBody ReviewRequest reviewDto) {
-        Product product = productService.getById(reviewDto.getProductId());
-        Review review = reviewMapper.toEntity(reviewDto);
-        review.setProduct(product);
-        return ResponseEntity.ok(reviewMapper.toDto(reviewService.add(review)));
+        return ResponseEntity.ok(reviewMapper.toDto(reviewService.add(reviewDto)));
     }
     @Operation(
             summary = "Delete review by id"
